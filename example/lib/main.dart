@@ -15,18 +15,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Color _randomStatusColor = Colors.black;
   Color _randomNavigationColor = Colors.black;
 
-  bool _useWhiteStatusBarForeground;
-  bool _useWhiteNavigationBarForeground;
+  bool? _useWhiteStatusBarForeground;
+  bool? _useWhiteNavigationBarForeground;
 
   @override
   initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
   dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
@@ -94,7 +94,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                   Builder(builder: (BuildContext context) {
                     return FlatButton(
                       onPressed: () => FlutterStatusbarcolor.getStatusBarColor()
-                          .then((Color color) {
+                          .then((Color? color) {
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(color.toString()),
                           backgroundColor: color,
@@ -180,7 +180,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                     return FlatButton(
                       onPressed: () =>
                           FlutterStatusbarcolor.getNavigationBarColor()
-                              .then((Color color) {
+                              .then((Color? color) {
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text(color.toString()),
                           backgroundColor: color,
@@ -196,21 +196,21 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                   }),
                   Padding(padding: const EdgeInsets.all(10.0)),
                   FlatButton(
-                    onPressed: () => changeNavigationColor(Colors.green[400]),
+                    onPressed: () => changeNavigationColor(Colors.green[400]!),
                     child: Text('Green-400'),
                     color: Colors.green[400],
                   ),
                   Padding(padding: const EdgeInsets.all(10.0)),
                   FlatButton(
                     onPressed: () =>
-                        changeNavigationColor(Colors.lightBlue[100]),
+                        changeNavigationColor(Colors.lightBlue[100]!),
                     child: Text('LightBlue-100'),
                     color: Colors.lightBlue[100],
                   ),
                   Padding(padding: const EdgeInsets.all(10.0)),
                   FlatButton(
                     onPressed: () =>
-                        changeNavigationColor(Colors.cyanAccent[200]),
+                        changeNavigationColor(Colors.cyanAccent[200]!),
                     child: Text('CyanAccent-200'),
                     color: Colors.cyanAccent[200],
                   ),

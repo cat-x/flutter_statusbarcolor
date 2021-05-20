@@ -7,13 +7,11 @@ import 'dart:ui';
 import 'package:flutter/services.dart';
 
 class FlutterStatusbarcolor {
-  static const MethodChannel _channel =
-      const MethodChannel('plugins.fuyumi.com/statusbar');
+  static const MethodChannel _channel = const MethodChannel('plugins.fuyumi.com/statusbar');
 
   /// Get the status bar background color.
-  static Future<Color> getStatusBarColor() =>
-      _channel.invokeMethod('getstatusbarcolor').then((dynamic value) {
-        return value == null ? null : Color(value);
+  static Future<Color?> getStatusBarColor() => _channel.invokeMethod('getstatusbarcolor').then((dynamic value) {
+        return value == null ? Future<Color?>.value() : Future<Color>.value(Color(value));
       });
 
   /// Set the status bar background color.
@@ -29,17 +27,15 @@ class FlutterStatusbarcolor {
   /// Set the status bar foreground brightness.
   /// Set to true, the color of the text and icon
   /// will be white, otherwise black.
-  static Future<void> setStatusBarWhiteForeground(bool useWhiteForeground) =>
-      _channel.invokeMethod('setstatusbarwhiteforeground', {
+  static Future<void> setStatusBarWhiteForeground(bool? useWhiteForeground) => _channel.invokeMethod('setstatusbarwhiteforeground', {
         'whiteForeground': useWhiteForeground,
       });
 
   /// Android only
   ///
   /// Get the navigation bar background color.
-  static Future<Color> getNavigationBarColor() =>
-      _channel.invokeMethod('getnavigationbarcolor').then((dynamic value) {
-        return value == null ? null : Color(value);
+  static Future<Color?> getNavigationBarColor() => _channel.invokeMethod('getnavigationbarcolor').then((dynamic value) {
+    return value == null ? Future<Color?>.value() : Future<Color>.value(Color(value));
       });
 
   /// Android only
@@ -61,14 +57,11 @@ class FlutterStatusbarcolor {
   /// Set the navigation bar foreground brightness.
   /// Set to true, the color of the text and icon
   /// will be white, otherwise black.
-  static Future<void> setNavigationBarWhiteForeground(
-          bool useWhiteForeground) =>
-      _channel.invokeMethod('setnavigationbarwhiteforeground', {
+  static Future<void> setNavigationBarWhiteForeground(bool? useWhiteForeground) => _channel.invokeMethod('setnavigationbarwhiteforeground', {
         'whiteForeground': useWhiteForeground,
       });
 }
 
 /// Help you choosing the black or white foreground color
 /// to improve the foreground visible.
-bool useWhiteForeground(Color backgroundColor) =>
-    1.05 / (backgroundColor.computeLuminance() + 0.05) > 4.5;
+bool useWhiteForeground(Color backgroundColor) => 1.05 / (backgroundColor.computeLuminance() + 0.05) > 4.5;

@@ -10,4 +10,11 @@ class MainActivity(): FlutterActivity() {
     super.onCreate(savedInstanceState)
     GeneratedPluginRegistrant.registerWith(this)
   }
+
+    @Override
+    fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
+//        MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)
+//                .setMethodCallHandler { call, result -> }
+    }
 }
