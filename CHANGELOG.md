@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.5]
+
+* Update to Android V2 embedding.
+
 ## [0.2.3]
 
 * Fix iOS 13+ Dark mode.

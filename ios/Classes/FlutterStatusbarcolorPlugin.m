@@ -1,4 +1,12 @@
 #import "FlutterStatusbarcolorPlugin.h"
+#if __has_include(<flutter_statusbarcolor/flutter_statusbarcolor-Swift.h>)
+#import <flutter_statusbarcolor/flutter_statusbarcolor-Swift.h>
+#else
+// Support project import fallback if the generated compatibility header
+// is not copied when this plugin is created as a library.
+// https://forums.swift.org/t/swift-static-libraries-dont-copy-generated-objective-c-header/19816
+#import "flutter_statusbarcolor-Swift.h"
+#endif
 
 #define ANDROID_COLOR(c) [UIColor colorWithRed:((c>>16)&0xFF)/255.0 green:((c>>8)&0xFF)/255.0 blue:((c)&0xFF)/255.0  alpha:((c>>24)&0xFF)/255.0]
 
